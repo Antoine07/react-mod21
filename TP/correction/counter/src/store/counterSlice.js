@@ -66,34 +66,50 @@ function delay(number, time) {
 
 export const counterAsync = createAsyncThunk(
     'counterAsync',
-    async () => {
-        const num = await delay(1, 500);
+    async (number) => {
+        const mum = await delay(number, 500);
 
-        return num;
+        return mum;
     }
 );
  
-const counterSliceAsync = createSlice({
+export const counterSliceAsync = createSlice({
     name: 'counter2',
-    initialState : { count : 0 },
+    initialState : { countA : 0, active: true },
     reducers: {
+        // pour des méthodes qui ne sont pas asynchrone
     },
+    // asynchrone 
     extraReducers: (builder) => {
       builder.addCase(counterAsync.pending, (state, action) => {
         console.log(state)
       });
+      // payload = c'est le résultat de la resolve dans la promesse
       builder.addCase(counterAsync.fulfilled, (state, action) => {
-        console.log(action.payload)
+        let count = action.payload ;
+        // si la valeur dépasse 10 
+        if( state.countA + count > 10){
+            count  = 2*count;
+        }
 
-        state.count = 1
+        if(state.countA + count > 20 ) {
+            state.active = false;
+
+            return ;
+        }
+
+        state.countA += count;
       });
       builder.addCase(counterAsync.rejected, (state, action) => {
         console.log(state)
-
       })
     },
   })
 
 export default configureStore({
-    reducer: counterSlice.reducer, // passe le state pour lecture dans useSelector
+    // combine reducer == lorsqu'il y a plusieurs reducers 
+    reducer: { 
+        c : counterSlice.reducer,  
+        ca: counterSliceAsync.reducer 
+    }, // passe le state pour lecture dans useSelector
 });
