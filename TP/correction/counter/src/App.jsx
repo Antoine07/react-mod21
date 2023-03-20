@@ -1,12 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
-import { increment } from "./store/counterSlice";
+import { increment, counterAsync  } from "./store/counterSlice";
 
 import './App.css'
+import { useEffect } from "react";
 
 
 function App() {
   const dispatch = useDispatch();
   const { number, parity } = useSelector( state => state );
+
+  useEffect(() => {
+    dispatch(counterAsync(10))
+    console.log('ici')
+  }, [])
 
   return (
     <div className="App">
