@@ -91,7 +91,7 @@ reducers: {
 
 On utilise dans cette exemple la fonction **createAsynchThunk**.
 
-Une action asynchrone ne peut être dispatcher dans Redux sans passer par le middleware Thunk qui est intégré dans reduxtoolkit. En effet, toutes les actions dans Redux sont dispatchées de manière synchrone, **createAsynchThunk** attendra la résolution de la Promesse et dispatchera l'action dans le reducer de manière synchrone.
+Une action asynchrone ne peut être dispatcher dans Redux sans passer par le **middleware** Thunk qui est intégré dans reduxtoolkit. En effet, toutes les actions dans Redux sont dispatchées de manière synchrone, **createAsynchThunk** attendra la résolution de la Promesse et dispatchera l'action dans le reducer de manière synchrone.
 
 #### Mise en pratique
 
@@ -100,14 +100,15 @@ On définit d'abord la fonction asynchrone elle-même, par exemple :
 ```js
 export const fetchUserById = createAsyncThunk(
   'users/fetchByIdStatus',
-  async (userId: number, thunkAPI) => {
+  async (userId) => {
     const response = await userAPI.fetchById(userId)
+
     return response.data
   }
 )
 ```
 
-Puis dans la partie createSlice on peut préciser les états de la promesse:
+Puis dans la partie createSlice, on peut préciser les états de la promesse:
 
 ```js
 const usersSlice = createSlice({
