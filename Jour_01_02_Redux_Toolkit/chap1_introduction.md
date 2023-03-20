@@ -132,11 +132,14 @@ const usersSlice = createSlice({
 
 ### 02 Exercice counter asynchrone
 
-Reprendre l'exercice précédent sur le counter.
+Reprendre l'exercice précédent sur le counter dans la partie TP
 
 1. Définissez un compteur asynchrone dans une promesse. 
 
 2. Ajoutez un bouton permettant d'afficher une valeur incrémentée +1 de manière asynchrone en utilisant createAsynchThunk
+
+3. Maintenant le délai du compteur est de 500ms; ajoutez à ce compteur la fonctionnalité suivante : si la valeur du compteur dépasse 10 on incrémente de +2. Et si on atteind 20 on rend inactif le bouton.
+
 
 ### 03 Exercice middleware 
 
