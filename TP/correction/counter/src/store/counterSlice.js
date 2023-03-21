@@ -21,8 +21,10 @@ export const counterSlice = createSlice({
             // le reducer modifie le state
             reducer: (state, action) => {
                 const { number } = action.payload;
-                console.log("actioncreateslice", action);
 
+                console.log("actioncreateslice", action, action.payload);
+
+                // state 
                 state.number += number;
                 state.parity = (state.number % 2) ? parityName.odd : parityName.even
                 state.step = number;

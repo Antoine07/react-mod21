@@ -24,7 +24,7 @@ function App() {
         <p>{parity}</p>
         <br />
         <p>Counter Async {countA}</p>
-        <button onClick={() => dispatch(increment(2))}>INCREMENT SYNC</button>
+        <button onClick={() => dispatch(increment(3))}>INCREMENT SYNC</button>
         <button disabled={!active} onClick={() => dispatch(counterAsync(1))}>
           INCREMENT ASYNC
         </button>
