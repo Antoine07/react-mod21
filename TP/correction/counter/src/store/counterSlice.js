@@ -21,7 +21,6 @@ export const counterSlice = createSlice({
             // le reducer modifie le state
             reducer: (state, action) => {
                 const { number } = action.payload;
-
                 console.log("actioncreateslice", action, action.payload);
 
                 // state 
