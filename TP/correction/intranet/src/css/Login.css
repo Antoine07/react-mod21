@@ -1,0 +1,29 @@
+.Login {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+hr {
+    margin: 1rem 0;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.flex-end {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.submit {
+    margin-top: 1rem;
+}
+
+
+

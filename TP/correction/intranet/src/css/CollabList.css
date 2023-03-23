@@ -1,0 +1,11 @@
+.CollabList {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    justify-content: center;
+}
+
+.CollabCard {
+    width: 400px;
+    margin: 1rem;
+}
