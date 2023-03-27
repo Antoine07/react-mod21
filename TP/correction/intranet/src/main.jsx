@@ -1,32 +1,39 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
-import Home from './components/Home'
-import CollabList from './components/CollabList'
-import './css/index.css'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import store from "./store/userSlice";
-import { Provider } from "react-redux";
+import { Provider } from 'react-redux'
+import './index.css'
+import App from './App'
+import ErrorPage from "./components/error-page";
+import Root from "./routes/root";
+import User from './components/User';
+
+import Protected from "./routes/ProtectedRoute"
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <App />,
+      },
+      {
+        path: "users",
+        element: <Protected><User /></Protected>
+      },
+    ],
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/hello" element={<Home />} />
-        <Route path="/list" element={<CollabList />} />
-      </Routes>
-    </BrowserRouter>
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  </React.StrictMode>,
 )
-
-
-
-/* Arborescence site
-*   - Login
-*       - home (say hello)
-*       - list
-*       - profil
-*       - Add collab (ADMIN)
-*       - Delete collab (ADMIN)
-*/
